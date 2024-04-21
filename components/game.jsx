@@ -81,6 +81,7 @@ function Game() {
     // //roll the dice if the game state is new, not if the game is restarted
     // if (gameState === GAME_STATES.NEW_GAME) rollDice();
     setDisplayMessage(""); //clear the message
+    setScore(0);
     rollDice();
     setSelectedOptions(new Set());
     setLastTurnSelectedOptions(new Set());
