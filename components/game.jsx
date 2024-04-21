@@ -80,6 +80,7 @@ function Game() {
   const startGame = useCallback(() => {
     // //roll the dice if the game state is new, not if the game is restarted
     // if (gameState === GAME_STATES.NEW_GAME) rollDice();
+    setDisplayMessage(""); //clear the message
     rollDice();
     setSelectedOptions(new Set());
     setLastTurnSelectedOptions(new Set());
@@ -200,7 +201,7 @@ function Game() {
           <CardBody>
             <div className="flex flex-col gap-10 px-4 py-6  ">
               {/* <div className="flex flex-row gap-4 px-4 justify-center items-center flex-wrap"> */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-x-2 gap-y-4 w-full items-center">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-2 gap-y-4 w-full items-center">
                 {Array.from({ length: 12 }).map((_, index) => {
                   const option = index + 1;
                   return (

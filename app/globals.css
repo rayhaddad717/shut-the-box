@@ -3,4 +3,9 @@
 @tailwind utilities;
 body {
   background-color: #11141a;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
 }
