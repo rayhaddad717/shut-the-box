@@ -120,15 +120,18 @@ function Game() {
         Math.floor(Math.random() * CONSTANTS.SASSY_MESSAGES.length)
       ]
     );
-    setSelectedOptions((prev) => {
-      return new Set([...prev, ...lastTurnSelectedOptions]);
-    });
+    const newSelectedOptions = new Set([
+      ...selectedOptions,
+      ...lastTurnSelectedOptions,
+    ]);
+    setSelectedOptions(newSelectedOptions);
     //increment the score of the player
     setScore((prev) => prev + 1);
     setLastTurnSelectedOptions(new Set());
     setGameState(GAME_STATES.PENDING_DICE_ROLL);
     // //check if the game is over or complete
     // checkForGameOverOrComplete();
+    checkForGameComplete(newSelectedOptions);
   }, [
     lastTurnSelectedOptions,
     dieValue,
@@ -150,13 +153,16 @@ function Game() {
     [selectedOptions]
   );
   //const check if the game is over
-  const checkForGameOverOrComplete = useCallback(() => {
-    if (selectedOptions.size === 12) {
-      setGameState(GAME_STATES.GAME_COMPLETE);
+  const checkForGameComplete = useCallback(
+    (newSelectedOptions) => {
+      if (newSelectedOptions.size === 12) {
+        setGameState(GAME_STATES.GAME_COMPLETE);
 
-      return;
-    }
-  }, [selectedOptions, dieValue, secondDieValue, isGameOver, score, highScore]);
+        return;
+      }
+    },
+    [setGameState]
+  );
 
   //check if the game is over
   useEffect(() => {
